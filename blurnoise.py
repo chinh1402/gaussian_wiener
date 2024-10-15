@@ -1,15 +1,17 @@
+# Mờ nhiễu
+
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import wiener
 
 # Load the image and convert to grayscale
-img = cv2.imread('6.jpg', cv2.IMREAD_GRAYSCALE)
+img = cv2.imread('2.jpg', cv2.IMREAD_GRAYSCALE)
 
+blurred_img = cv2.GaussianBlur(img, (9, 9), 2) 
 
-# Add Gaussian noise
-noise = np.random.normal(0, 30, img.shape)
-noisy_img = img + noise
+noise = np.random.normal(0, 10, img.shape)
+noisy_img = blurred_img + noise
 
 # Apply Wiener filter
 restored_img = wiener(noisy_img, (5, 5))
